@@ -1,0 +1,12 @@
+Read and write
+FileReader reader = new FileReader(new File("FromSrc"));
+FileWriter writer = new FileWriter(new File("ToSrc"));
+
+char[] bufferChar = new char[length];
+//这个要不间断的读
+while(true){
+	int bufferLength = reader.reade(bufferChar);
+	if(bufferLength==-1)
+		break;
+	writer.write(bufferChar,0,bufferLength);
+}

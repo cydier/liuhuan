@@ -1,0 +1,12 @@
+Arguments
+how to use arguments in javascript
+	when we wanna use the parameters in the function,we need use arguments
+	so,we may see:
+
+function(args...){
+	var length = arguments.length;
+.
+.
+.
+
+}

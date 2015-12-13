@@ -1,0 +1,50 @@
+StrictMode.ThreadPolicy was introduced since API Level 9 and the default thread policy had been changed since API Level 11, which in short, does not allow network operation (include HttpClient and HttpUrlConnection) get executed on UI thread. if you do this, you get NetworkOnMainThreadException.	----StrictMode 严苛模式
+
+
+ThreadPolicy：ThreadPolicy 指定已创建的 POA（这是啥？） 所使用的线程模型 (threading model)。默认值为 ORB_CTRL_MODEL。
+
+	所以解决这种异常的方式一：if (android.os.Build.VERSION.SDK_INT > 9) {
+      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+      StrictMode.setThreadPolicy(policy);
+    }
+
+    -------可以装下X，用这个方法。but
+
+
+ it is always recommended to move network operation off the UI thread, for example, using AsyncTask.（这是啥）----AsyncTask,是android提供的轻量级的异步类,可以直接继承AsyncTask,在类中实现异步操作,并提供接口反馈当前异步执行的程度(可以通过接口实现UI进度更新),最后反馈执行的结果给UI主线程.----handler不就是一个异步类么?
+ Android之所以有Handler和AsyncTask，都是为了不阻塞主线程（UI线程），且UI的更新只能在主线程中完成，因此异步处理是不可避免的。--我知道用handler，怎么用AsyncTask
+
+一个异步加载数据最少要重写以下这两个方法：
+	1，doInBackground(Params…) 后台执行，比较耗时的操作都可以放在这里。注意这里不能直接操作UI。此方法在后台线程执行，完成任务的主要工作，通常需要较长的时间。在执行过程中可以调用publicProgress(Progress…)来更新任务的进度。
+	2，onPostExecute(Result)  相当于Handler 处理UI的方式，在这里面可以使用在doInBackground 得到的结果处理操作UI。 此方法在主线程执行，任务执行的结果作为此方法的参数返回
+
+实例代码：
+	......button.setOnClickListener(new OnClickListener() {  
+              
+            @Override  
+            public void onClick(View v) {  
+                ProgressBarAsyncTask asyncTask = new ProgressBarAsyncTask(textView, progressBar);  
+                asyncTask.execute(1000);  //这里传入的参数，是doInBackground要的参数
+            }  
+        });  
+
+//内容过多，已经省略部分不重要的
+ public class ProgressBarAsyncTask extends AsyncTask<Integer, Integer, String> {  
+ 			.
+ 			.
+ 	protected <T> doInBackground(Integer... params) {  
+        ...
+        return <T>;
+    }  ...
+
+    protected void onPostExecute(<T> result) {  
+        //textView.setText("异步操作执行结束" + result);  
+    }  
+
+
+    与handler比较，推荐使用这个种方式。
+
+
+
+
+ }

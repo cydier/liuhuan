@@ -1,0 +1,6 @@
+data in Jsp to js
+if you wanna put the value in jsp into a js,you can use the hidden input.
+so you can c:
+	<input type="hidden" value= <%=value%> >
+	so,you c get the value via js.
+	<jsp:param value name  >

@@ -1,0 +1,24 @@
+httpclient
+老师讲的是用defaulthttpclient,官网上说：
+	Android includes two HTTP clients: HttpURLConnection and Apache HTTP Client. Both support HTTPS, streaming uploads and downloads, configurable timeouts, IPv6 and connection pooling. Apache HTTP client has fewer bugs in Android 2.2 (Froyo) and earlier releases. For Android 2.3 (Gingerbread) and later, HttpURLConnection is the best choice. Its simple API and small size makes it great fit for Android. Transparent compression and response caching reduce network use, improve speed and save battery. See the Android Developers Blog for a comparison of the two HTTP clients。
+而且，	官方（apache）已经Deprecated这个玩意了。
+	DefaultHttpClient ---> CloseableHttpClient
+	HttpResponse ---> CloseableHttpResponse
+		CloseableHttpClient httpclient = HttpClients.createDefault();   
+		HttpGet httpGet = new HttpGet("http://targethost/homepage");   
+		CloseableHttpResponse response1 = httpclient.execute(httpGet); 
+
+我们是学安卓的，当然用安卓的httpclient，就是AndroidhttpClient，里面为安卓设置的一些方法，大家自己慢慢研究。
+	用途是啥子：
+
+		Turn off stale checking, since the connections can break all the time.
+		Set ConnectionTimeout and SoTimeout (20 or 60 seconds)
+		Turn off redirecting.
+		Use a session cache for SSL sockets.
+		Use gzip compressed traffic between client and server if it's possible.
+		Doesn't retain cookies by default.
+
+	用法和defaulthttpclient差不多，有几个注意的地方
+	创建 AndroidHttpClient对象：AndroidHttpClient c = AndroidHttpClient.newInstance("");			//传入的参数是use-agent，某贴说是传入的代理，请忽视，可以传入“”，就是请求头里面的，官方解释：to report in your HTTP requests。
+
+推荐使用AndroidHttpClient

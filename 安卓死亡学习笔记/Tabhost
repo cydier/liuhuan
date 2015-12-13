@@ -1,0 +1,21 @@
+#Tabhost
+	**Call setup() before adding tabs if loading TabHost using findViewById(). However: You do not need to call setup() after getTabHost() in TabActivity
+##calss overview
+	Container for a tabbed window view. This object holds two children: a set of tab labels that the user clicks to select a specific tab, and a FrameLayout object that displays the contents of that page. The individual elements are typically controlled using this container object, rather than setting values on the child elements themselves.
+##example
+	mTabHost = (TabHost)findViewById(R.id.tabhost);mTabHost.setup();mTabHost.addTab(TAB_TAG_1, "Hello, world!", "Tab 1");
+##method needed noticed
+	void  addTab(TabHost.TabSpec tabSpec) --Add a tab. 
+	public void setup () .
+#TabHost.TabSpec
+##calss	 overview
+	A tab has a tab **indicator**, content, and a tag that is used to keep track of it. This builder helps choose among these options. For the tab indicator, your choices are: 1) set a label 2) set a label and an icon For the tab content, your choices are: 1) the id of a View 2) a TabHost.TabContentFactory that creates the View content. 3) an Intent that launches an Activity. 
+##methods
+	public TabHost.TabSpec setContent (int viewId) --Specify the id of the view that should be used as the content of the tab. 
+	
+	setContent(TabHost.TabContentFactory contentFactory) --Specify a TabHost.TabContentFactory to use to create the content of the tab.
+
+	setContent(Intent intent) --Specify an intent to use to launch an activity as the tab content.
+
+#viewpager
+	

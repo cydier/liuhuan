@@ -1,0 +1,20 @@
+ParseXml(code)
+public class parserXml{
+	public static void main(String args[]){
+		SAXParser parser = SAXParserFactory.newInstance().new SAXParser();
+		parser.parse("src",new myContentHandler());
+	}
+}
+
+class myContentHandler extends Default{
+	public void startDocument(){};
+	public void endDocument(){};
+	public void startElement(String ui,String location,String qName,Attributes attris){
+		//qName is the startElement name,Attributes is the Attributes in the startElement.
+		//you can use Attributes.getQname(index)  index--from 0 to Attributes.getLength();
+	};
+	public void endElement(String ui,String location,String qName){}
+	public void characters(Char ch,int start,int length){
+		String s = new String(ch,start,length);
+	}
+}

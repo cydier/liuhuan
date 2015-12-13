@@ -1,0 +1,11 @@
+Sax parSer
+there are Two type:
+		1:	SAXParser parser = ParserFactory.newInstance().new SAXParser(); 
+			parser.parse("src",new ContentHandler());
+		2:  SAXParser parser = ParserFactory.newInstance().new SAXParser(); 
+			XMLReader xmlReader = parser.getXMLReader();
+			xmlReader.setContentHandler(new ContentHandler());
+			xmlReader.parse("src");
+
+Jaxp dom parser
+		Document document = DocumnentBuildFactory.newInstance().parse("src")

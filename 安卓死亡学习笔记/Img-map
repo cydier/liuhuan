@@ -1,0 +1,13 @@
+Img
+u should know this
+	when we use map in the <img>,we may need to creat the area attribute.
+	and we should defind the shape of the map,such as circle,rect.
+	so,we may see
+
+<img src="planets.jpg" border="0" usemap="#planetmap" alt="Planets" border="0" />
+<map name="planetmap" id="planetmap">//  "#",er,I think this may refer to the name attribute
+  <area shape="circle" coords="180,139,14" href ="venus.html" style="cursor: pointer" alt="Venus" />
+  <area shape="circle" coords="129,161,10" href ="mercur.html" alt="Mercury" /> 
+  <area shape="rect" coords="0,0,110,260" href ="sun.html" alt="Sun" /> 
+</map>
+

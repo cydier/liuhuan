@@ -1,0 +1,23 @@
+#各种policy
+##threadPolicy
+	ThreadPolicy 指定已创建的 POA（这是啥？） 所使用的线程模型 (threading model)。默认值为 ORB_CTRL_MODEL。
+	
+	exmple:
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+      	StrictMode.setThreadPolicy(policy);
+
+##devicePolicy
+	policies  on a device
+
+	example:
+	dpm = (DevicePolicyManager) this
+				.getSystemService(Context.DEVICE_POLICY_SERVICE);
+	dpm.removeActiveAdmin(cn);
+	dpm.lockNow();
+	dpm.wipeData(0);
+
+	---便于理解，谷歌推出了一款应用Device Policy用于手机丢失或失窃的adroid 2.2+设备进行安全处理。有定位，响铃，远程重置设备pin或密码、清楚所有设备数据
+##audioPolicy-----
+
+##policyService与policyManager
+	

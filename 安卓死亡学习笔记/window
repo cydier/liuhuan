@@ -1,0 +1,52 @@
+##window
+	Abstract base class for a top-level window look and behavior policy. An instance of this class should be used as the top-level view added to the window manager. It provides standard UI policies such as a background, title area, default key processing, etc. 
+
+	public class MainActivity extends Activity {
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        //Ìí¼Ó±³¾°ÑÕÉ«
+         getWindow().setBackgroundDrawableResource(R.color.color);
+         
+         //Ìí¼ÓÒ»¸öÍ¼Æ¬
+         ImageView image=(ImageView) findViewById(R.id.image);
+         Resources r=getResources();
+         Drawable dra=r.getDrawable(R.drawable.http_imgload2);
+         //Ìí¼Ó±³¾°Í¼Æ¬
+         getWindow().setBackgroundDrawable(dra);
+         //Ìí¼ÓÒ»¸öÍ¼Æ¬
+         image.setImageDrawable(dra);
+    }
+	}
+
+##remote views( android.widget.RemoteViews )
+	A class that describes a view hierarchy that can be displayed in another process. The hierarchy is inflated from a layout resource file, and this class provides some basic operations for modifying the content of the inflated hierarchy. 
+
+	public class MyTimer extends TimerTask {
+
+	private RemoteViews view;
+	private AppWidgetManager wManager;
+	private ComponentName provider;
+	private static final SimpleDateFormat df=new SimpleDateFormat("hh :mm :ss");
+	
+	
+	public MyTimer(Context context,AppWidgetManager wManager) {
+		super();
+		this.wManager = wManager;
+		this.view=new RemoteViews(context.getPackageName(),R.layout.main);
+		this.provider=new ComponentName(context,MyWidgets.class);
+		
+		Intent intent=new Intent("com.fit.add");
+		PendingIntent pending=PendingIntent.getActivity(context,0, intent,0);
+		this.view.setOnClickPendingIntent(R.id.view, pending);
+	}
+
+	@Override
+	public void run() {
+		view.setTextViewText(R.id.view,df.format(new Date()));
+		wManager.updateAppWidget(provider, view);	
+	}
+	}
+	

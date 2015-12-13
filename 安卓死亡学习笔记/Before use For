@@ -1,0 +1,3 @@
+Before use For 
+when you use For,the var in the for{} should not be changed,if you chaged the var in the for();the for() will end.
+so,we can use iterator to deal with this problem.

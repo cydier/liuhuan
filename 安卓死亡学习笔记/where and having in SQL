@@ -1,0 +1,3 @@
+where and having in SQL
+we should use having when we need to show some records group by some condition.
+and we need to use where when we operate the filed;

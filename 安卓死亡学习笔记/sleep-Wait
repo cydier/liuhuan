@@ -1,0 +1,12 @@
+Sleep
+sleep is different from wait
+		when we use sleep,the thread wait,and the thread does not 		release the lock.
+		when we use wait,the thread wait until singalled,and release 		the lock,when singalled,the thread waits to get the lock
+		so we may understand it:
+
+er,I donnot how to explaint it.....
+.
+
+.
+
+.

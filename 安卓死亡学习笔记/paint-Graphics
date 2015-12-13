@@ -1,0 +1,21 @@
+Grphics
+if you wanna use the paint method to paint,you need:
+		u should be using some Frame or panel(I think)
+		u should have the Graphics paremeters in the paint method
+		donot need to call the paint method
+		so,we may see:
+
+new MyFrame();
+.
+.
+.
+Class MyFrame extends JFrame{
+.
+.
+.
+	public void paint(graphics  g){}
+}
+
+
+and you can repaint
+	component.paint(component.getGraphics())

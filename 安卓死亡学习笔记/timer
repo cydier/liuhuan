@@ -1,0 +1,46 @@
+#timer
+	Timers are used to schedule jobs for execution in a background process. A single thread is used for the scheduling and this thread has the option of being a daemon thread. By calling **cancel **you can terminate a Timer and its associated thread. All tasks which are scheduled to run after this point are cancelled. Tasks are executed **sequentially** but are subject to the delays from other tasks run methods. If a specific task takes an excessive amount of time to run it may impact the time at which subsequent tasks may run. 
+
+##default schedule tasks 
+	A Timer can be set to schedule tasks either at a fixed rate or with a fixed period. Fixed-period execution is the default. 
+
+##The difference between fixed-rate and fixed-period 
+	The difference between fixed-rate and fixed-period execution is the following: With fixed-rate execution, the start time of each successive run of the task is scheduled in absolute terms without regard for when the previous task run actually took place. This can result in a series of bunched-up runs (one launched immediately after another) if busy resources or other system delays prevent the Timer from firing for an extended time. With fixed-period execution, each successive run of the task is scheduled relative to the start time of the previous run of the task, so two runs of the task are never fired closer together in time than the specified period.
+
+    
+###
+    public class MainActivity extends Activity {
+
+	/** Called when the activity is first created. */
+	int i=0;
+	TextView view;
+	Timer timer=new Timer();
+	
+	
+	Handler handler=new Handler(){
+		public void handleMessage(android.os.Message msg) {
+			switch(msg.what){
+			case 1:
+				i++;
+				view.setText(String.valueOf(i));
+				break;
+			}	
+		};
+	};
+	TimerTask task=new TimerTask() {
+		
+		@Override
+		public void run() {
+			Message message=new Message();
+			message.what=1;
+			handler.sendMessage(message);
+		}
+	};
+   
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+		view=(TextView) findViewById(R.id.view);
+		timer.scheduleAtFixedRate(task, new Date(), 2000);  //当某个时间到的时候执行，存活时间 
+	}
+	}

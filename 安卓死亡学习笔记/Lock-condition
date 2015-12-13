@@ -1,0 +1,18 @@
+condition 
+lock has different condition.
+	'cause the instance has many different conditions.
+	 so ,we may see
+
+Lock lock = new Lock;
+Condition firstCondition = lock.new Condition();
+Condition secondCondition = lock.new Condition();	
+.
+.
+.
+{
+	firstCondition.await();
+	.
+	.
+	.
+	secondCondition.singal();
+}	

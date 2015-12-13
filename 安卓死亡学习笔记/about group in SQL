@@ -1,0 +1,5 @@
+about group in SQL
+	in sql,we need notice to how to use group;
+	if we need to get each student's sum(math,chinese,english) and the student's name,if we say: select sum(math,chinese,english),we may get the sum of all students,but we just need everyone's. and we need to say like this: select sum(math,chinese,english) group by name,or someother filed.
+
+	
