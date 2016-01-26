@@ -1,14 +1,3 @@
 public static void main.....
 aaa
-aaaa
-aaaaa
-aaaaaa
-aaaaaaaaa
-aaaaaaaaaaa
-aaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaa
+S
